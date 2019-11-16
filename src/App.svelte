@@ -8,8 +8,10 @@
   let projectName = "Github Banner";
   let fontSize = 32;
   let fontFamily = "'Varela Round'";
+  let code;
+  let dataUrl;
 
-  const code = `<p align="center"><img src="./assets/banner.png" /></p>`;
+  $: code = `<p align="center"><img src="${dataUrl}" /></p>`;
 
   const produce = () => {
     const ctx = canvasRef.getContext("2d");
@@ -19,6 +21,7 @@
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#000";
     ctx.fillText(projectName, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+    dataUrl = canvasRef.toDataURL();
   };
 
   onMount(() => {
@@ -74,6 +77,7 @@
     max-width: 530px;
     padding: 10px 20px;
     display: block;
+    overflow: auto;
     -moz-box-shadow: 0 0 1px 3px #dddddd94;
     -webkit-box-shadow: 0 0 1px 3px #dddddd94;
     box-shadow: 0 0 1px 3px #dddddd94;
